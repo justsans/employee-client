@@ -16,7 +16,7 @@ export function* usersFetchList(action) {
 // add/edit a user
 export function* usersAddEdit(action) {
   // call the api to add/edit the user
-  yield call(ApiUsers.addEdit);
+  yield call(ApiUsers.addEdit, action.user);
   //return action.callbackError("Some error");   // show an error when the API fails
 
   // update the state by adding/editing the user
@@ -25,14 +25,14 @@ export function* usersAddEdit(action) {
     user: action.user,
   });
 
-  // success
+  // successs
   action.callbackSuccess();
 }
 
 // delete a user
 export function* usersDelete(action) {
   // call the api to delete the user
-  yield call(ApiUsers.delete);
+  yield call(ApiUsers.delete, action.user_id);
 
   // update the state by removing the user
   yield put({

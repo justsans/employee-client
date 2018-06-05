@@ -10,18 +10,16 @@ export default class UserListElement extends React.Component {
     return (
       <tr>
         <td>#{user.id}</td>
-        <td>{user.username}</td>
-        <td>{user.job}</td>
+        <td>{user.name}</td>
+        <td>{user.title}</td>
         <td>
           <Link to={'user-edit/' + user.id}>
-            <Button bsSize="xsmall">
-              Edit <Glyphicon glyph="edit"/>
+            <Button bsSize="xsmall" bsStyle="primary" className="mx-20">
+              <Glyphicon glyph="edit"/>
             </Button>
           </Link>
-        </td>
-        <td>
-          <Button bsSize="xsmall" className="user-delete" onClick={() => showDelete(user)}>
-            Delete <Glyphicon glyph="remove-circle"/>
+          <Button bsSize="xsmall" bsStyle="danger" className="user-delete" onClick={() => showDelete(user)}>
+            <Glyphicon glyph="remove-circle"/>
           </Button>
         </td>
       </tr>

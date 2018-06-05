@@ -1,25 +1,17 @@
 {
-  "name": "redux-minimal",
+  "name": "employee-client",
   "version": "1.0.0",
-  "description": "Start building complex react-redux apps today, with this minimalist easy to understand starter kit (boilerplate)",
+  "description": "Client to view employee portal",
   "keywords": [
     "react",
-    "redux",
-    "minimal",
-    "starter kit",
-    "boilerplate"
+    "redux"
   ],
   "main": "index.js",
-  "homepage": "http://redux-minimal.js.org/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/catalin-luntraru/redux-minimal"
-  },
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --history-api-fallback --host localhost --port 8080",
-    "build-dev": "webpack --config webpack.dev.config.js",
-    "build-prod": "webpack -p --config webpack.prod.config.js",
-    "test": "mocha --recursive --compilers js:babel-register --require babel-polyfill --require ignore-styles",
+    "start": "NODE_ENV=development webpack-dev-server --inline --hot --history-api-fallback --host localhost --port 8080",
+    "build-dev": "NODE_ENV=development webpack --config webpack.dev.config.js",
+    "build-prod": "NODE_ENV=production webpack  -p --config webpack.prod.config.js",
+    "test": "NODE_ENV=development mocha --recursive --compilers js:babel-register --require babel-polyfill --require ignore-styles",
     "test-watch": "npm test -- --watch"
   },
   "babel": {
@@ -29,8 +21,6 @@
       "stage-3"
     ]
   },
-  "author": "Catalin Luntraru",
-  "license": "MIT",
   "dependencies": {
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
@@ -41,7 +31,8 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",
-    "redux-saga": "^0.14.3"
+    "redux-saga": "^0.14.3",
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

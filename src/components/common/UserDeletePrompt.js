@@ -10,7 +10,7 @@ export default class UserDeletePrompt extends React.Component {
       <Modal show={show}>
         <Modal.Header>
           <Modal.Title>
-            Are you sure you want to delete <strong>{user.username}</strong>?
+            Are you sure you want to delete <strong>{user.name}</strong>?
           </Modal.Title>
         </Modal.Header>
         <Modal.Footer>

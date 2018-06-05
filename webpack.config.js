@@ -1,8 +1,11 @@
 // http://webpack.github.io/docs/configuration.html
 // http://webpack.github.io/docs/webpack-dev-server.html
-var app_root = 'src_users'; // the app root folder: src, src_users, etc
+var app_root = 'src'; // the app root folder: src, src, etc
 var path = require('path');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var webpack = require("webpack");
+var configuration = require('./webpack-constants');
+
 
 module.exports = {
   app_root: app_root, // the app root folder, needed by the other webpack configs
@@ -45,5 +48,8 @@ module.exports = {
       verbose: true,
       dry: false, // true for simulation
     }),
+    new webpack.DefinePlugin({
+      API_BASE_URL: JSON.stringify(configuration[process.env.NODE_ENV].BASE_URL)
+    })
   ],
 };

@@ -21,12 +21,12 @@ export class UserEdit extends React.Component {
     const {user, handleSubmit, error, invalid, submitting} = this.props;
     return (
       <div className="page-user-edit">
-        <PageHeader>{'User ' + (user.id ? 'edit' : 'add')}</PageHeader>
+        <PageHeader>{(user.id ? 'Edit' : 'Add') + ' Employee'}</PageHeader>
         <Form horizontal onSubmit={handleSubmit(this.formSubmit)}>
-          <Field component={FormField} name="username" label="Username" doValidate={true}/>
-          <Field component={FormField} name="job" label="Job"/>
+          <Field component={FormField} name="name" label="Name" doValidate={true}/>
+          <Field component={FormField} name="title" label="Title"/>
           <FormSubmit error={error} invalid={invalid} submitting={submitting} buttonSaveLoading="Saving..."
-            buttonSave="Save User"/>
+            buttonSave="Save Employee"/>
         </Form>
       </div>
     );
@@ -40,8 +40,8 @@ export class UserEdit extends React.Component {
         type: 'USERS_ADD_EDIT',
         user: {
           id: values.id || 0,
-          username: values.username,
-          job: values.job,
+          name: values.name,
+          title: values.title,
         },
         callbackError: (error) => {
           reject(new SubmissionError({_error: error}));
@@ -60,8 +60,8 @@ const UserEditForm = reduxForm({
   form: 'user_edit',
   validate: function (values) {
     const errors = {};
-    if (!values.username) {
-      errors.username = 'Username is required';
+    if (!values.name) {
+      errors.name = 'Name is required';
     }
     return errors;
   },

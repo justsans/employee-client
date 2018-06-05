@@ -32,18 +32,15 @@ export class UserList extends React.Component {
     const pages = Math.ceil(users.length / per_page);
     const start_offset = (page - 1) * per_page;
     let start_count = 0;
-
-    // show the list of users
     return (
       <div>
         <Table bordered hover responsive striped>
           <thead>
           <tr>
             <th>ID</th>
-            <th>Username</th>
-            <th>Job</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th></th>
           </tr>
           </thead>
           <tbody>
@@ -59,10 +56,10 @@ export class UserList extends React.Component {
         </Table>
 
         <Pagination className="users-pagination pull-right" bsSize="medium" maxButtons={10} first last next
-          prev boundaryLinks items={pages} activePage={page} onSelect={this.changePage}/>
+                    prev boundaryLinks items={pages} activePage={page} onSelect={this.changePage}/>
 
         <UserDeletePrompt show={this.state.delete_show} user={this.state.delete_user}
-          hideDelete={this.hideDelete} userDelete={this.userDelete}/>
+                          hideDelete={this.hideDelete} userDelete={this.userDelete}/>
       </div>
     );
   }
