@@ -29,7 +29,7 @@ describe('Users saga', () => {
     const generator = usersAddEdit(action);
 
     it('should return the ApiUsers.addEdit call', () => {
-      assert.deepEqual(generator.next().value, call(ApiUsers.addEdit));
+      assert.deepEqual(generator.next().value, call(ApiUsers.addEdit, action.user));
     });
 
     it('should return the USERS_ADD_SAVE action', () => {
@@ -52,7 +52,7 @@ describe('Users saga', () => {
     const generator = usersAddEdit(action);
 
     it('should return the ApiUsers.addEdit call', () => {
-      assert.deepEqual(generator.next().value, call(ApiUsers.addEdit));
+      assert.deepEqual(generator.next().value, call(ApiUsers.addEdit, action.user));
     });
 
     it('should return the USERS_EDIT_SAVE action', () => {
@@ -74,7 +74,7 @@ describe('Users saga', () => {
     const generator = usersDelete(action);
 
     it('should return the ApiUsers.delete call', () => {
-      assert.deepEqual(generator.next().value, call(ApiUsers.delete));
+      assert.deepEqual(generator.next().value, call(ApiUsers.delete, action.user_id));
     });
 
     it('should return the USERS_DELETE_SAVE action', () => {
