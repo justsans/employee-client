@@ -46,7 +46,6 @@ jobs:
 
 
       # run tests!
-      - run: npm run build-dev
       - run: npm test
       - persist_to_workspace:
           root: .
@@ -62,16 +61,37 @@ jobs:
         # run tests!
         - run: npm audit
   deploy-dev:
-      docker:
-          # specify the version you desire here
-          - image: cibuilds/aws
-      working_directory: ~/repo
-
+      <<: *defaults
       steps:
         - attach_workspace:
             at: ~/repo
+        - run:
+            name: Install dependencies
+            working_directory: /
+            command: |
+              apt-get -y -qq update
+              apt-get -y -qq install python3.4-dev
+              curl -O https://bootstrap.pypa.io/get-pip.py
+              python3.4 get-pip.py --user
+              pip install awscli --upgrade --user
         - run: npm run build-dev
         - run: aws s3 sync public/ s3://dev-employee-client
+  deploy-prod:
+      <<: *defaults
+      steps:
+        - attach_workspace:
+            at: ~/repo
+        - run:
+            name: Install dependencies
+            working_directory: /
+            command: |
+              apt-get -y -qq update
+              apt-get -y -qq install python3.4-dev
+              curl -O https://bootstrap.pypa.io/get-pip.py
+              python3.4 get-pip.py --user
+              pip install awscli --upgrade --user
+        - run: npm run build-dev
+        - run: aws s3 sync public/ s3://prod-employee-client
 
 
 workflows:
@@ -91,4 +111,9 @@ workflows:
           filters:
             branches:
               only: master
-
+      - deploy-prod:
+          requires:
+            - deploy-dev
+          filters:
+            branches:
+              only: master
