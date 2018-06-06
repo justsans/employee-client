@@ -46,6 +46,7 @@ jobs:
 
 
       # run tests!
+      - run: npm run build-dev
       - run: npm test
       - persist_to_workspace:
           root: .
@@ -63,13 +64,12 @@ jobs:
   deploy-dev:
       docker:
           # specify the version you desire here
-          - image: circleci/node:latest
+          - image: cibuilds/aws
       working_directory: ~/repo
 
       steps:
         - attach_workspace:
             at: ~/repo
-        - run: npm run build-dev
         - run: aws s3 sync public/ s3://dev-employee-client
 
 
