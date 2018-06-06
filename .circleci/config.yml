@@ -65,15 +65,7 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/repo
-        - run:
-            name: Install dependencies
-            working_directory: /
-            command: |
-              apt-get -y -qq update
-              apt-get -y -qq install python3.4-dev
-              curl -O https://bootstrap.pypa.io/get-pip.py
-              python3.4 get-pip.py --user
-              pip install awscli --upgrade --user
+        - run: sudo apt-get -y -qq install awscli
         - run: npm run build-dev
         - run: aws s3 sync public/ s3://dev-employee-client
   deploy-prod:
@@ -81,15 +73,7 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/repo
-        - run:
-            name: Install dependencies
-            working_directory: /
-            command: |
-              apt-get -y -qq update
-              apt-get -y -qq install python3.4-dev
-              curl -O https://bootstrap.pypa.io/get-pip.py
-              python3.4 get-pip.py --user
-              pip install awscli --upgrade --user
+        - run: sudo apt-get -y -qq install awscli
         - run: npm run build-dev
         - run: aws s3 sync public/ s3://prod-employee-client
 
