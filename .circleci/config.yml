@@ -5,7 +5,7 @@
 defaults: &defaults
   docker:
     # specify the version you desire here
-    - image: arbornetworks-docker-public-docker.bintray.io/circleci-node-aws:8.4.0
+    - image: circleci/node:latest
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
