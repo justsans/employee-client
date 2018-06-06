@@ -77,12 +77,12 @@ workflows:
       - build:
           requires:
             - checkout
-      - integration-test:
+      - audit:
           requires:
             - build
       - deploy-dev:
           requires:
-            - integration-test
+            - build
           filters:
             branches:
               only: master
