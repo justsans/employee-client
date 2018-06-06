@@ -12,7 +12,8 @@
     "build-dev": "NODE_ENV=development webpack --config webpack.dev.config.js",
     "build-prod": "NODE_ENV=production webpack  -p --config webpack.prod.config.js",
     "test": "mocha --require ./config/mocha-setup --recursive --compilers js:babel-register --require babel-polyfill --require ignore-styles",
-    "test-watch": "npm test -- --watch"
+    "test-watch": "npm test -- --watch",
+    "e2e": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "babel": {
     "presets": [
@@ -54,6 +55,8 @@
     "redux-freeze": "^0.1.5",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
+    "wdio-selenium-standalone-service": "0.0.10",
+    "webdriverio": "^4.12.0",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "whatwg-fetch": "^2.0.1"
