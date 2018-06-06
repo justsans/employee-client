@@ -5,7 +5,7 @@
 defaults: &defaults
   docker:
     # specify the version you desire here
-    - image: circleci/node:7.10
+    - image: circleci/node:latest
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
@@ -61,7 +61,11 @@ jobs:
         # run tests!
         - run: npm audit
   deploy-dev:
-      <<: *defaults
+      docker:
+          # specify the version you desire here
+          - image: circleci/node:latest
+      working_directory: ~/repo
+
       steps:
         - attach_workspace:
             at: ~/repo
