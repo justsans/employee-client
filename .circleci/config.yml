@@ -67,7 +67,8 @@ jobs:
             at: ~/repo
         - run: npm run build-dev
         - run: sudo apt-get -y -qq install awscli
-        - run: aws s3 sync public/ s3://dev-employee-client
+        - run: aws s3 sync public/ s3://dev-employee-client --region us-east-1
+
   deploy-prod:
       <<: *defaults
       steps:
@@ -75,7 +76,7 @@ jobs:
             at: ~/repo
         - run: npm run build-dev
         - run: sudo apt-get -y -qq install awscli
-        - run: aws s3 sync public/ s3://prod-employee-client
+        - run: aws s3 sync public/ s3://prod-employee-client --region us-east-1
 
 
 workflows:
