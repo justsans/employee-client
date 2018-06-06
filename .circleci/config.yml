@@ -70,6 +70,7 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/repo
+        - run: npm run build-dev
         - run: aws s3 sync public/ s3://dev-employee-client
 
 
