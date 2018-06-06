@@ -72,14 +72,14 @@ jobs:
             command: aws configure set default.s3.signature_version s3v4
         - run: aws s3 sync public/ s3://ci-employee-client --region us-east-1
   e2e-test:
-      <<: *defaults
+      docker:
+          - image: karthikiyengar/node-nightwatch
+      working_directory: ~/repo
       steps:
         - attach_workspace:
-            # Must be absolute path or relative path from working_directory
             at: ~/repo
-
-        # run tests!
         - run: npm run e2e
+
   deploy-prod:
       <<: *defaults
       steps:
