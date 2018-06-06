@@ -16,7 +16,7 @@ export class App extends React.Component {
   render() {
     // show the loading state while we wait for the app to load
     const {users, children} = this.props;
-    if (!users.length) {
+    if (users === undefined) {
       return (
         <ProgressBar active now={100}/>
       );
