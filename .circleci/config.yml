@@ -5,7 +5,7 @@
 defaults: &defaults
   docker:
     # specify the version you desire here
-    - image: circleci/node:latest
+    - image: arbornetworks-docker-public-docker.bintray.io/circleci-node-aws:8.4.0
 
     # Specify service dependencies here if necessary
     # CircleCI maintains a library of pre-built images
@@ -65,7 +65,6 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/repo
-        - run: sudo apt-get -y -qq install awscli
         - run: npm run build-dev
         - run: aws s3 sync public/ s3://dev-employee-client
   deploy-prod:
@@ -73,8 +72,7 @@ jobs:
       steps:
         - attach_workspace:
             at: ~/repo
-        - run: sudo apt-get -y -qq install awscli
-        - run: npm run build-dev
+        - run: npm run build-prod
         - run: aws s3 sync public/ s3://prod-employee-client
 
 
