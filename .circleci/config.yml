@@ -67,6 +67,10 @@ jobs:
             at: ~/repo
         - run: npm run build-dev
         - run: sudo apt-get -y -qq install awscli
+        # Set the signature version for the S3 auth
+        - run:
+            name: Setting Signature Version 4 for S3 Request Authentication
+            command: aws configure set default.s3.signature_version s3v4
         - run: aws s3 sync public/ s3://dev-employee-client --region us-east-1
 
   deploy-prod:
@@ -76,6 +80,10 @@ jobs:
             at: ~/repo
         - run: npm run build-dev
         - run: sudo apt-get -y -qq install awscli
+        # Set the signature version for the S3 auth
+        - run:
+            name: Setting Signature Version 4 for S3 Request Authentication
+            command: aws configure set default.s3.signature_version s3v4
         - run: aws s3 sync public/ s3://prod-employee-client --region us-east-1
 
 
