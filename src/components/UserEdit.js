@@ -24,7 +24,7 @@ export class UserEdit extends React.Component {
         <PageHeader>{(user.id ? 'Edit' : 'Add') + ' Employee'}</PageHeader>
         <Form horizontal onSubmit={handleSubmit(this.formSubmit)}>
           <Field component={FormField} name="name" label="Name" doValidate={true}/>
-          <Field component={FormField} name="title" label="Title"/>
+          <Field component={FormField} name="title" label="Title" doValidate={true}/>
           <FormSubmit error={error} invalid={invalid} submitting={submitting} buttonSaveLoading="Saving..."
             buttonSave="Save Employee"/>
         </Form>
@@ -62,6 +62,9 @@ const UserEditForm = reduxForm({
     const errors = {};
     if (!values.name) {
       errors.name = 'Name is required';
+    }
+    if (!values.title) {
+      errors.title = 'Title is required';
     }
     return errors;
   },

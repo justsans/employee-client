@@ -29,7 +29,7 @@ export class UserList extends React.Component {
     // pagination
     const {users, page} = this.props;
     const per_page = 10;
-    const pages = Math.ceil(users.length / per_page);
+    const pages = users ? Math.ceil(users.length / per_page)  : 1;
     const start_offset = (page - 1) * per_page;
     let start_count = 0;
     return (
