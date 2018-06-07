@@ -42,7 +42,7 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 5,
+        maxInstances: 1,
         //
         browserName: 'chrome'
     }],
@@ -112,6 +112,24 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['selenium-standalone'],
+    seleniumInstallArgs: {
+      logger: console.log,
+      drivers: {
+        chrome: {
+          version: '2.29',
+          arch: process.arch,
+          baseURL: 'https://chromedriver.storage.googleapis.com',
+        },
+      },
+    },
+    seleniumArgs: {
+      logger: console.log,
+      drivers: {
+        chrome: {
+          version: '2.29',
+        },
+      },
+    },
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html

@@ -13,7 +13,5 @@ describe('add user spec', function() {
     browser.click('.user-edit-button a');
     var text = browser.getText('h1');
     assert(text === 'Add Employee');
-
-
   });
 });
