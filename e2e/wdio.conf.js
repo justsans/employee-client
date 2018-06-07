@@ -44,7 +44,10 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 1,
         //
-        browserName: 'phantomjs'
+        browserName: 'phantomjs',
+        chromeOptions: {
+          // args: ['--headless', '--disable-gpu'],
+        }
     }],
     //
     // ===================
