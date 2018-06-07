@@ -23,10 +23,18 @@ describe('UserList component', () => {
       const user2 = {id: '2'};
       const props = {users: [user1, user2 ], page: 1};
       const wrapper = shallow(<UserList {...props} />);
-      expect(wrapper.length).to.equal(1);
-      console.log(wrapper.debug())
+      expect(wrapper.find('UserListElement').length).to.equal(2);
       expect(wrapper.find('UserListElement').get(0).props.user).to.equal(user1);
       expect(wrapper.find('UserListElement').get(1).props.user).to.equal(user2);
+    });
+
+    it('should show only users on second page', () => {
+      const user1 = {id: '1'};
+      const user2 = {id: '2'};
+      const props = {users: [user1, user1,user1,user1,user1,user1,user1,user1,user1,user1,user2 ], page: 2};
+      const wrapper = shallow(<UserList {...props} />);
+      expect(wrapper.find('UserListElement').length).to.equal(1);
+      expect(wrapper.find('UserListElement').get(0).props.user).to.equal(user2);
     });
   });
 });
