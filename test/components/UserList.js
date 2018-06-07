@@ -1,19 +1,12 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { expect } from 'chai';
-import configureStore from 'redux-mock-store';
-const mockStore = configureStore();
 
 import { UserList } from "../../src/components/common/UserList";
 
 // unit tests for the UserList component
 describe('UserList component', () => {
   let store;
-
-  beforeEach(() => {
-    //creates the store with any initial state or middleware needed
-    store = mockStore({users: [{id: '1'}, {id: '2'} ]});
-  });
 
   describe('render()', () => {
     it('should render the Table Pagination and UserDeletePrompt', () => {
